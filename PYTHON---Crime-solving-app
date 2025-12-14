@@ -1,0 +1,15 @@
+suspects = {
+    "Alice": {"motive": 3, "alibi": 1, "evidence": 4},
+    "Bob":   {"motive": 1, "alibi": 3, "evidence": 2},
+    "Carol": {"motive": 4, "alibi": 0, "evidence": 5},
+}
+
+def calculate_score(data):
+    return data["motive"] * 2 + data["evidence"] * 3 - data["alibi"] * 2
+
+scores = {name: calculate_score(info) for name, info in suspects.items()}
+
+sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+
+for suspect, score in sorted_scores:
+    print(f"{suspect}: {score}")
